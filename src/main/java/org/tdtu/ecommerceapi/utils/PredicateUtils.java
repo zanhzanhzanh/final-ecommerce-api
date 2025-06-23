@@ -33,7 +33,7 @@ public class PredicateUtils {
         PathBuilder<?> entityPath =
                 new PathBuilder<>(classType, HelperUtils.getEntityVariable(classType.getSimpleName()));
         Class<?> propertyType = HelperUtils.getPropertyType(classType, key);
-        return switch (propertyType.getSimpleName()) {
+        return switch (propertyType.isPrimitive() ? HelperUtils.getWrapperType(propertyType).getSimpleName() : propertyType.getSimpleName()) {
             case "UUID" -> getUUIDPredicate(key, operator, value, entityPath);
             case "String" -> getStringPredicate(key, operator, value, entityPath);
             case "Integer" -> getIntegerPredicate(key, operator, value, entityPath);

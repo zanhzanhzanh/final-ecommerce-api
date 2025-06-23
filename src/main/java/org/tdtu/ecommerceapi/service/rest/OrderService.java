@@ -48,6 +48,11 @@ public class OrderService extends BaseService<Order, OrderReqDto, OrderResDto, O
         this.orderItemRepository = orderItemRepository;
     }
 
+    public List<OrderResDto> findByAccount(UUID accountId) {
+        return mappingUtils.mapListToDTO(
+                repository.findByAccount(accountId), OrderResDto.class);
+    }
+
     public List<UUID> getAvailablePromotions(UUID accountId, List<UUID> promotionIds) {
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new NotFoundException(Account.class, "id", accountId.toString()));
@@ -251,5 +256,12 @@ public class OrderService extends BaseService<Order, OrderReqDto, OrderResDto, O
             return Math.max(totalPrice - promotionOrderTotal.getDiscountAmount(), 0);
         }
         return totalPrice;
+    }
+
+    public OrderResDto updateOrderStatus(UUID orderId, PaymentStatus paymentStatus, DeliveryStatus deliveryStatus) {
+        Order order = find(orderId, false);
+        order.setPaymentStatus(paymentStatus);
+        order.setDeliveryStatus(deliveryStatus);
+        return mappingUtils.mapToDTO(repository.save(order), OrderResDto.class);
     }
 }

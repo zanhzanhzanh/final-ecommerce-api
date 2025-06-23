@@ -10,7 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import org.tdtu.ecommerceapi.dto.api.ApiPageableResponse;
+import org.tdtu.ecommerceapi.dto.rest.request.AddressReqDto;
+import org.tdtu.ecommerceapi.dto.rest.request.OrderReqDto;
 import org.tdtu.ecommerceapi.dto.rest.request.PlaceOrderReqDto;
+import org.tdtu.ecommerceapi.enums.DeliveryStatus;
+import org.tdtu.ecommerceapi.enums.PaymentStatus;
 import org.tdtu.ecommerceapi.service.rest.OrderService;
 
 import java.util.List;
@@ -42,6 +46,19 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable UUID id) {
         return ResponseEntity.ok(orderService.getById(id, false));
+    }
+
+    @GetMapping("/get-by-account/{accountId}")
+    public ResponseEntity<?> getByAccountId(@PathVariable UUID accountId) {
+        return ResponseEntity.ok(orderService.findByAccount(accountId));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateOrderStatus(
+            @PathVariable UUID id,
+            @RequestParam PaymentStatus paymentStatus,
+            @RequestParam DeliveryStatus deliveryStatus) {
+        return ResponseEntity.ok(orderService.updateOrderStatus(id, paymentStatus, deliveryStatus));
     }
 
     // TODO: Delete this

@@ -111,21 +111,25 @@ public class SecurityConfig {
                                     .requestMatchers("/admin/**").hasRole("admin")
 
                                     // Promotion
+                                    .requestMatchers(HttpMethod.GET, "**/promotions/**").permitAll()
                                     .requestMatchers(HttpMethod.POST, "**/promotions/**").hasAnyRole("admin", "seller")
                                     .requestMatchers(HttpMethod.PUT, "**/promotions/**").hasAnyRole("admin", "seller")
                                     .requestMatchers(HttpMethod.DELETE, "**/promotions/**").hasAnyRole("admin", "seller")
 
                                     // Product
+                                    .requestMatchers(HttpMethod.GET, "**/products/**").permitAll()
                                     .requestMatchers(HttpMethod.POST, "**/products/**").hasAnyRole("admin", "seller")
                                     .requestMatchers(HttpMethod.PUT, "**/products/**").hasAnyRole("admin", "seller")
                                     .requestMatchers(HttpMethod.DELETE, "**/products/**").hasAnyRole("admin", "seller")
 
                                     // AppGroup
+                                    .requestMatchers(HttpMethod.GET, "**/groups/**").permitAll()
                                     .requestMatchers(HttpMethod.POST, "**/groups/**").hasAnyRole("admin", "seller")
                                     .requestMatchers(HttpMethod.PUT, "**/groups/**").hasAnyRole("admin", "seller")
                                     .requestMatchers(HttpMethod.DELETE, "**/groups/**").hasAnyRole("admin", "seller")
 
                                     // Category
+                                    .requestMatchers(HttpMethod.GET, "**/categories/**").permitAll()
                                     .requestMatchers(HttpMethod.POST, "**/categories/**").hasAnyRole("admin", "seller")
                                     .requestMatchers(HttpMethod.PUT, "**/categories/**").hasAnyRole("admin", "seller")
                                     .requestMatchers(HttpMethod.DELETE, "**/categories/**").hasAnyRole("admin", "seller")
@@ -134,6 +138,7 @@ public class SecurityConfig {
                                     .requestMatchers(HttpMethod.GET, "**/accounts/**").hasRole("admin")
                                     .requestMatchers(HttpMethod.POST, "**/accounts/**").hasRole("admin")
                                     // TODO: Temporarily disable PUT for accounts to prevent issues with user management
+                                    .requestMatchers(HttpMethod.PUT, "**/accounts/**").permitAll()
 //                            .requestMatchers(HttpMethod.PUT, "**/accounts/**").hasRole("admin")
                                     .requestMatchers(HttpMethod.DELETE, "**/accounts/**").hasRole("admin")
 

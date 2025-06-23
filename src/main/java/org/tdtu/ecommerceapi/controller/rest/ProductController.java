@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.tdtu.ecommerceapi.dto.api.ApiPageableResponse;
 import org.tdtu.ecommerceapi.dto.rest.request.ProductReqDto;
+import org.tdtu.ecommerceapi.service.provider.OpenAIService;
 import org.tdtu.ecommerceapi.service.rest.ProductService;
 
 import java.util.UUID;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;
+    private final OpenAIService openAIService;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable UUID id) {
@@ -50,5 +52,10 @@ public class ProductController {
             @RequestParam(required = false, defaultValue = "") String[] filter) {
         ApiPageableResponse productPage = productService.getList(filter, pageable);
         return ResponseEntity.ok(productPage);
+    }
+
+    @GetMapping("/similar/{id}")
+    public ResponseEntity<?> findSimilarProducts(@PathVariable UUID id) {
+        return ResponseEntity.ok(openAIService.findSimilarProducts(id));
     }
 }

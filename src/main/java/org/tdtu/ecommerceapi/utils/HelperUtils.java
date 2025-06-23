@@ -90,6 +90,9 @@ public class HelperUtils {
 
     @SneakyThrows(IllegalAccessException.class)
     public static Map<String, Object> inspect(Object object) {
+        if (object == null) {
+            return new HashMap<>();
+        }
         Map<String, Object> map = new HashMap<>();
         List<Class<?>> superClassList = getSuperClasses(object);
         superClassList.add(object.getClass());
@@ -109,6 +112,9 @@ public class HelperUtils {
     }
 
     public static List<Class<?>> getSuperClasses(Object object) {
+        if (object == null) {
+            return Collections.emptyList();
+        }
         List<Class<?>> superClassList = new ArrayList<>();
         Class<?> superClass = object.getClass().getSuperclass();
         while (superClass != null) {
@@ -132,5 +138,19 @@ public class HelperUtils {
         signedHeaders.entrySet().removeIf(e -> !e.getKey().startsWith("x-amz-"));
         signedHeaders.replaceAll((k, v) -> v.substring(1, v.length() - 1));
         return signedHeaders;
+    }
+
+    public static Class<?> getWrapperType(Class<?> primitiveType) {
+        return switch (primitiveType.getName()) {
+            case "int" -> Integer.class;
+            case "double" -> Double.class;
+            case "long" -> Long.class;
+            case "float" -> Float.class;
+            case "boolean" -> Boolean.class;
+            case "char" -> Character.class;
+            case "byte" -> Byte.class;
+            case "short" -> Short.class;
+            default -> primitiveType;
+        };
     }
 }

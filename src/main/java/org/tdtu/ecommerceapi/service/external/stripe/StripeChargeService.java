@@ -68,8 +68,8 @@ public class StripeChargeService extends StripeService {
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 // TODO: Build in application.properties for FE and + orderId
                 // TODO: Or use for update Order Or in Webhook
-                .setSuccessUrl(serverURI + "/stripe/success?orderId=" + orderId.toString())
-                .setCancelUrl(serverURI + "/stripe/cancel?orderId=" + orderId.toString())
+                .setSuccessUrl(clientURI + "/stripe/success?orderId=" + orderId.toString())
+                .setCancelUrl(clientURI + "/stripe/cancel?orderId=" + orderId.toString())
                 .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
                 .putMetadata("orderId", orderId.toString())
                 // TODO: Check if this need

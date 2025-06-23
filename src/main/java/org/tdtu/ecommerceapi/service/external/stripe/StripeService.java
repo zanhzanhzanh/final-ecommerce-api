@@ -14,6 +14,9 @@ public abstract class StripeService {
     @Value("${server.uri}")
     protected String serverURI;
 
+    @Value("${client.uri}")
+    protected String clientURI;
+
     @PostConstruct
     public void init() {
         Stripe.apiKey = stripeSecretKey;

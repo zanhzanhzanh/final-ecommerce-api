@@ -11,7 +11,6 @@ import org.tdtu.ecommerceapi.service.BaseService;
 import org.tdtu.ecommerceapi.utils.MappingUtils;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ProductService extends BaseService<Product, ProductReqDto, ProductResDto, ProductRepository> {
