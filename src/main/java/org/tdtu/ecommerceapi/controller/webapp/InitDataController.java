@@ -132,13 +132,13 @@ public class InitDataController {
 
         // -- Product --
         // Create products for Electronics category
-        Query phoneQuery = new Query(Criteria.where("productName").is("Smartphone"));
+        Query phoneQuery = new Query(Criteria.where("productName").is("iPhone 16 Pro Max 1TB"));
         Product phone = mongoOperations.findOne(phoneQuery, Product.class);
         if (phone == null) {
             phone = new Product();
             phone.setId(null);
-            phone.setProductName("Smartphone");
-            phone.setImage("smartphone.jpg");
+            phone.setProductName("iPhone 16 Pro Max 1TB");
+            phone.setImage("iphone.png");
             phone.setDescription("Latest smartphone");
             phone.setQuantity(100);
             phone.setPrice(2000000);
@@ -146,13 +146,13 @@ public class InitDataController {
             phone = productRepository.save(phone);
         }
 
-        Query laptopQuery = new Query(Criteria.where("productName").is("Laptop"));
+        Query laptopQuery = new Query(Criteria.where("productName").is("ThinkPad X1 Carbon Gen 13 Aura Edition"));
         Product laptop = mongoOperations.findOne(laptopQuery, Product.class);
         if (laptop == null) {
             laptop = new Product();
             laptop.setId(null);
-            laptop.setProductName("Laptop");
-            laptop.setImage("laptop.jpg");
+            laptop.setProductName("ThinkPad X1 Carbon Gen 13 Aura Edition");
+            laptop.setImage("laptop2.png");
             laptop.setDescription("High-performance laptop");
             laptop.setQuantity(50);
             laptop.setPrice(5600000);
@@ -160,13 +160,13 @@ public class InitDataController {
             laptop = productRepository.save(laptop);
         }
 
-        Query tabletQuery = new Query(Criteria.where("productName").is("Tablet"));
+        Query tabletQuery = new Query(Criteria.where("productName").is("Samsung Galaxy Tab S6"));
         Product tablet = mongoOperations.findOne(tabletQuery, Product.class);
         if (tablet == null) {
             tablet = new Product();
             tablet.setId(null);
-            tablet.setProductName("Tablet");
-            tablet.setImage("tablet.jpg");
+            tablet.setProductName("Samsung Galaxy Tab S6");
+            tablet.setImage("tablet.png");
             tablet.setDescription("Portable tablet");
             tablet.setQuantity(75);
             tablet.setPrice(1560000);
@@ -181,12 +181,87 @@ public class InitDataController {
             book = new Product();
             book.setId(null);
             book.setProductName("Programming Book");
-            book.setImage("book.jpg");
+            book.setImage("book.png");
             book.setDescription("Learn programming");
             book.setQuantity(200);
             book.setPrice(65000);
             book.setCategory(books);
             book = productRepository.save(book);
+        }
+
+        // Create product for Electronics category
+        Query smartwatchQuery = new Query(Criteria.where("productName").is("Apple Smartwatch"));
+        Product smartwatch = mongoOperations.findOne(smartwatchQuery, Product.class);
+        if (smartwatch == null) {
+            smartwatch = new Product();
+            smartwatch.setId(null);
+            smartwatch.setProductName("Apple Smartwatch");
+            smartwatch.setImage("watch.png");
+            smartwatch.setDescription("Fitness tracking smartwatch");
+            smartwatch.setQuantity(80);
+            smartwatch.setPrice(1200000);
+            smartwatch.setCategory(electronics);
+            smartwatch = productRepository.save(smartwatch);
+        }
+
+        // Create product for Electronics category
+        Query earbudsQuery = new Query(Criteria.where("productName").is("Wireless Earbuds"));
+        Product earbuds = mongoOperations.findOne(earbudsQuery, Product.class);
+        if (earbuds == null) {
+            earbuds = new Product();
+            earbuds.setId(null);
+            earbuds.setProductName("Wireless Earbuds");
+            earbuds.setImage("earbuds.png");
+            earbuds.setDescription("True wireless stereo earbuds");
+            earbuds.setQuantity(150);
+            earbuds.setPrice(800000);
+            earbuds.setCategory(electronics);
+            earbuds = productRepository.save(earbuds);
+        }
+
+        // Create product for Books category
+        Query novelQuery = new Query(Criteria.where("productName").is("MacBook Pro 16 inch M3 Max"));
+        Product novel = mongoOperations.findOne(novelQuery, Product.class);
+        if (novel == null) {
+            novel = new Product();
+            novel.setId(null);
+            novel.setProductName("MacBook Pro 16 inch M3 Max");
+            novel.setImage("mac.png");
+            novel.setDescription("Latest MacBook Pro with M3 Max chip");
+            novel.setQuantity(300);
+            novel.setPrice(24000000);
+            novel.setCategory(electronics);
+            novel = productRepository.save(novel);
+        }
+
+        // Create product for Books category
+        Query textbookQuery = new Query(Criteria.where("productName").is("Laptop Lenovo IdeaPad Slim 5"));
+        Product textbook = mongoOperations.findOne(textbookQuery, Product.class);
+        if (textbook == null) {
+            textbook = new Product();
+            textbook.setId(null);
+            textbook.setProductName("Laptop Lenovo IdeaPad Slim 5");
+            textbook.setImage("laptop.png");
+            textbook.setDescription("The best laptop for students");
+            textbook.setQuantity(100);
+            textbook.setPrice(10000000);
+            textbook.setCategory(electronics);
+            textbook = productRepository.save(textbook);
+        }
+
+        // Create product for Electronics category
+        Query speakerQuery = new Query(Criteria.where("productName").is("Bluetooth Speaker"));
+        Product speaker = mongoOperations.findOne(speakerQuery, Product.class);
+        if (speaker == null) {
+            speaker = new Product();
+            speaker.setId(null);
+            speaker.setProductName("Bluetooth Speaker");
+            speaker.setImage("speaker.png");
+            speaker.setDescription("Portable Bluetooth speaker");
+            speaker.setQuantity(60);
+            speaker.setPrice(500000);
+            speaker.setCategory(electronics);
+            speaker = productRepository.save(speaker);
         }
 
         // -- Addresses --
