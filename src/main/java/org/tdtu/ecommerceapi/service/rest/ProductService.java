@@ -36,7 +36,7 @@ public class ProductService extends BaseService<Product, ProductReqDto, ProductR
         Product product = mappingUtils.mapFromDTO(productReqDto, Product.class);
 
         product.setCategory(category);
-        product.setImage("defaultProduct.png");
+        product.setImage(product.getImage());
 
         return mappingUtils.mapToDTO(repository.save(product), ProductResDto.class);
     }
